@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% extends "series/base.html" %}
+
+{% block body_block %}
+
+<div class="container">
+    <a href="{% url 'index' %}"><small>Go to index</small></a>
+    <h1><b><u>Create Movie</u></b></h1>
+    <div class="row">
+        <div class="col-3">
+            <form method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                {{form.as_p}}
+                <input type="submit" value="submit" class="btn-block">
+            </form>
+        </div>
+        <div class="col-6">
+            <div class="container">
+            <table class="table">
+                <tr>
+                    <td><u>Movie</u></td>
+                    <td><u>Language</u></td>
+                    <td><u>Price(₹)</u></td>
+                    <td></td>
+                    <td><u>Options</u></td>
+                </tr>
+                {% for movie in movies %}
+                <tr>
+                    <td>{{movie.movie_name}}</td>
+                    <td>{{movie.language}}</td>
+                    <td>{{movie.price}}</td>
+                    <td><a href="{% url 'movieview' movie.id %}" class="btn btn-outline-secondary">View</a> </td>
+                    <td><a href="{% url 'movieedit' movie.id %}" class="btn btn-outline-primary">Edit</a> </td>
+                    <td><a href="{% url 'moviedelete' movie.id %}"  class="btn btn-outline-danger">Delete</a> </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

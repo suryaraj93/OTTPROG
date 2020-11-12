@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "user/userbase.html" %}
+
+{% block body_block %}
+<h3><u>Choose your favourites.</u></h3>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form method="post">
+                {%csrf_token%}
+                {{search.as_p}}
+                <input type="submit" class="btn btn-outline-primary" value="search">
+            </form>
+        </div>
+    </div>
+<br>
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{movie.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><b><u>{{movie.movie_name}}</u></b></h5>
+                    <p class="card-text">{{movie.language}}</p>
+                    <p class="card-text">{{movie.genre}}</p>
+                    <p class="card-text">Starring - {{movie.starring}}</p>
+                    <p class="card-text">Enjoy this movie @ ₹{{movie.price}} only.</p>
+                    <a href="{% url "usermovieview" movie.id%} " class="btn btn-outline-primary">Buy for
+                    ₹{{movie.price}}</a>
+                </div>
+            </div>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

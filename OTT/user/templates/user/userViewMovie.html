@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+{% extends "user/userbase.html" %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-4"><h2><b><u>{{movies.movie_name}}</u></b></h2></div>
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{movies.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><b><u>{{movies.movie_name}}</u></b></h5>
+                    <p class="card-text">{{movies.language}}</p>
+                    <p class="card-text">{{movies.genre}}</p>
+                    <p class="card-text">Starring - {{movies.starring}}</p>
+                    <p class="card-text">Enjoy this movie @ ₹{{movies.price}} only.</p>
+                    <a href="{% url "userorder" movies.id %}" class="btn btn-outline-primary">Order</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+{% endblock %}

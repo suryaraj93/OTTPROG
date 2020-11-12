@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "series/base.html" %}
+
+{% block body_block %}
+<div class="container">
+    <table class="table">
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Mobile</td>
+            <td>Status</td>
+
+        </tr>
+        {% for order in qs %}
+        <tr>
+            <td>{{order.person}}</td>
+            <td>{{order.email}}</td>
+            <td>{{order.mobile}}</td>
+            <td>{{order.status}}</td>
+            <td><a href="{% url 'orderdetails' order.id %}">View this order</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
